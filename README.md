@@ -86,7 +86,7 @@ Element	Color	Meaning
 
 Download or clone the repository:
 
-git clone https://github.com/<your-username>/Disk-Scheduling-Visualizer.git
+git clone https://github.com/trivedismit13/Disk-Scheduling-Visualizer.git
 
 
 Open the folder and locate:
