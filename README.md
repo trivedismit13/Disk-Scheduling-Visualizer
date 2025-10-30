@@ -107,7 +107,7 @@ Mozilla Firefox	88+
 
 🧾 Author
 
-Name: Smit [Your Full Name if required by VTOP]
+Name: Smit Bhavesh Trivedi
 Course: B.Tech CSE
 Project Title: Disk Scheduling Visualizer
 Year: 2025
