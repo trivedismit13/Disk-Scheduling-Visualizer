@@ -1,0 +1,220 @@
+/* styles.css — Carbon Neon theme core */
+:root{
+  --bg: #0B0E12;
+  --surface: #0F1720;
+  --card: #12141A;
+  --text: #E6EEF3;
+  --muted: #A9B3BD;
+  --primary: #00E5FF;
+  --accent: #FFB86B;
+  --served: #7EE787;
+  --pending: #9AA3B2;
+  --focus: #7A9CFF;
+  --danger: #FF6B6B;
+
+  --radius: 10px;
+  --gap: 14px;
+  --pad: 14px;
+  --control-width: 320px;
+  --ui-font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --mono-font: 'IBM Plex Mono', 'Roboto Mono', monospace;
+}
+
+/* App layout */
+html,body{
+  height:100%;
+  margin:0;
+  background:linear-gradient(180deg, var(--bg), #061018 120%);
+  color:var(--text);
+  font-family: var(--ui-font);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-size:16px;
+}
+
+#app{ display:flex; gap:var(--gap); padding:20px; box-sizing:border-box; min-height:100vh; align-items:flex-start; justify-content:center; }
+
+/* Controls sidebar */
+#controls{
+  width:var(--control-width);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-radius:var(--radius);
+  padding:var(--pad);
+  box-shadow: 0 6px 20px rgba(2,6,10,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.03);
+  gap: 0.8rem;
+}
+
+#controls h2{ margin:0 0 10px 0; font-size:1.15rem; color:var(--primary); letter-spacing:0.6px; }
+#controls label{ display:block; margin:10px 0; color:var(--muted); font-size:0.95rem; }
+#controls input[type="number"], #controls input[type="text"], #controls select{
+  width:100%;
+  padding:8px 10px;
+  margin-top:6px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;
+  color:var(--text);
+  outline:none;
+  font-family:var(--mono-font);
+}
+
+/* Buttons */
+#computeRow{ display:flex; gap:8px; margin-top:8px; align-items:center; }
+button{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.04);
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  transition: transform 0.08s ease, box-shadow 0.12s ease;
+  font-weight:600;
+  gap: 0.8rem;
+}
+button:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.6); }
+button:active{ transform:translateY(0); }
+
+button.primary{
+  background:linear-gradient(90deg,var(--primary), #5df0ff);
+  color:#061018;
+  box-shadow: 0 6px 18px rgba(0,229,255,0.12), 0 1px 0 rgba(255,255,255,0.02) inset;
+  border:none;
+}
+button.warn{ background: linear-gradient(90deg, var(--accent), #ffcf9e); color:#071018; border:none; }
+
+/* Speed slider */
+input[type="range"]{ width:100%; }
+
+/* Visual/canvas area */
+#visual{ flex:1; min-width:520px; display:flex; flex-direction:column; gap:10px; align-items:center; }
+#diskCanvas{
+  width:100%;
+  max-width:1200px;
+  height:360px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 20px 50px rgba(2,6,10,0.75);
+  display:block;
+}
+
+/* Playback bar (under canvas) */
+#canvasWrap{ width:100%; display:flex; justify-content:center; align-items:center; }
+#playbackBar{
+  width:100%;
+  max-width:1000px;
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  gap:8px; /* reduced gap overall */
+  justify-content:space-between;
+  padding:10px 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* groups inside playback bar */
+#playbackBar .left-group, #playbackBar .center-group, #playbackBar .right-group, #playbackBar .right-most{
+  display:flex;
+  gap:6px; /* smaller gap so elements sit closer */
+  align-items:center;
+}
+
+/* Base control style */
+#playbackBar .control{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.04);
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  min-width:40px;
+  min-height:36px;
+}
+
+/* Large primary play/pause */
+#playbackBar .large{
+  min-width:56px;
+  min-height:48px;
+  border-radius:12px;
+  font-size:1.05rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* primary accent for major button */
+#playbackBar .primary{
+  background: linear-gradient(90deg, var(--primary), #5df0ff);
+  color:#061018;
+  border:none;
+  box-shadow: 0 6px 20px rgba(0,229,255,0.14);
+}
+
+/* subtle hover glow */
+#playbackBar .control:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+
+/* Speed inline label */
+#playbackBar .speed-inline{ color:var(--muted); font-family:var(--mono-font); display:flex; gap:8px; align-items:center; }
+
+/* Timeline style (wider) */
+#timeline{ width:100%; max-width:1000px; accent-color:var(--primary); margin-top:8px; }
+
+/* Stats panel */
+#stats{
+  margin-top:6px;
+  font-family:var(--mono-font);
+  color:var(--muted);
+  font-size:0.95rem;
+  white-space:pre-wrap;
+}
+
+/* Small neon glow util */
+.neon{
+  box-shadow: 0 0 18px rgba(0,229,255,0.12), 0 0 40px rgba(0,229,255,0.04);
+  border:1px solid rgba(0,229,255,0.06);
+}
+
+/* Utility classes for request labels in DOM (if used) */
+.req-pending{ color:var(--pending); }
+.req-active{ color:var(--accent); font-weight:700; }
+.req-served{ color:var(--served); text-decoration:line-through; opacity:0.9; }
+
+/* Focus styles for accessibility */
+:focus{ outline:2px solid var(--focus); outline-offset:2px; border-radius:6px; }
+
+/* Responsive: stack controls on small screens */
+@media (max-width:780px){
+  #app{ flex-direction:column; padding:12px; }
+  #controls{ width:100%; order:2; }
+  #visual{ order:1; width:100%; }
+  #playbackBar{ flex-direction:column; gap:10px; align-items:stretch; padding:12px; }
+  #playbackBar .center-group{ justify-content:center; gap:10px; }
+  #playbackBar .right-most{ justify-content:flex-end; }
+}
+
+/* better playback bar spacing */
+#playbackBar {
+  justify-content: space-evenly;
+  padding: 8px 10px;
+  gap: 6px;
+}
+
+#playbackBar button.control {
+  min-width: 42px;
+  height: 42px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+}
+
+#playbackBar button.control.primary.large {
+  font-size: 1.4rem;
+  padding: 10px 16px;
+}
+
+#diskCanvas {
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%);
+  box-shadow: 0 0 20px var(--accent-glow);
+}

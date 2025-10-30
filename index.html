@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Disk Scheduling Visualizer — SCAN / C-SCAN</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="app">
+    <aside id="controls">
+      <h2>Disk Scheduling — SCAN / C-SCAN</h2>
+
+      <label>Disk size (max cylinder):
+        <input id="diskSize" type="number" value="199" min="1" />
+      </label>
+
+      <label>Head start:
+        <input id="headStart" type="number" value="50" min="0" />
+      </label>
+
+      <label>Direction:
+        <select id="direction">
+          <option value="1">Increasing</option>
+          <option value="-1">Decreasing</option>
+        </select>
+      </label>
+
+      <label>Algorithm:
+        <select id="algorithm">
+          <option value="scan">SCAN</option>
+          <option value="cscan">C-SCAN</option>
+        </select>
+      </label>
+
+      <label>Request queue (comma separated):
+        <input id="queueInput" type="text" value="82,170,43,140,24,16,190" />
+      </label>
+
+      <div id="computeRow">
+        <button id="btnCompute" class="primary" title="Compute service order (Enter)">Compute</button>
+        <button id="btnExport" title="Export execution trace (E)">Export Trace</button>
+        <button id="btnScreenshot" title="Download canvas screenshot (S)">Screenshot</button>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div id="stats" aria-live="polite"></div>
+      </div>
+    </aside>
+
+    <main id="visual">
+      <div id="canvasWrap">
+        <canvas id="diskCanvas" width="1000" height="360" aria-label="Disk scheduling animation canvas"></canvas>
+      </div>
+
+      <!-- Primary controls: centered under canvas -->
+      <div id="playbackBar" role="toolbar" aria-label="Playback controls">
+        <div class="left-group">
+          <!-- <button id="btnStepBack" class="control" title="Step Back (←)">⟲</button> -->
+        </div>
+
+        <div class="center-group">
+          <!-- single toggle button for play/pause -->
+        
+          <button id="btnStepBack" class="control" title="Step Back (←)">⟲</button>
+          <button id="btnPlayPause" class="control primary large" title="Play / Pause (Space)">▶</button>
+          <button id="btnStepFwd" class="control" title="Step Forward (→)">⟳</button>
+        </div>
+
+        <div class="right-group">
+          <!-- <button id="btnStepFwd" class="control" title="Step Forward (→)">⟳</button> -->
+          <label class="speed-inline">Speed
+            <input id="speed" type="range" min="0.25" max="4" step="0.25" value="3" title="Playback speed"/>
+          </label>
+        </div>
+
+        <div class="right-most">
+          <button id="btnExportSmall" class="control" title="Export trace">Export</button>
+          <button id="btnScreenshotSmall" class="control" title="Screenshot">📷</button>
+        </div>
+      </div>
+
+      <!-- Timeline slider -->
+      <input id="timeline" type="range" min="0" max="0" value="0" aria-label="Simulation timeline" />
+
+    </main>
+  </div>
+
+  <script type="module" src="src/ui.js"></script>
+</body>
+</html>
