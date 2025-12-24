@@ -104,7 +104,7 @@ Mozilla Firefox	88+
 
 🧾 Author<br>
 
-Name: Smit [Your Full Name if required by VTOP]<br>
+Name: Smit <br>
 Course: B.Tech CSE<br>
 Project Title: Disk Scheduling Visualizer<br>
 Year: 2025
